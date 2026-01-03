@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int smallestRepunitDivByK(int k) {
+    if (k % 2 == 0) return -1;
+
+    int remainder = 0;
+
+    for (int i = 0; i < k; i++) {
+        remainder = (remainder * 10 + 1) % k;
+        if (remainder == 0) return i+1;
+    }
+
+    return -1;
+}
