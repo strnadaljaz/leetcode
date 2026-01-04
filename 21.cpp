@@ -9,23 +9,34 @@ struct ListNode {
 };
 
 void izpisiListNode(ListNode* list) {
-    while (list != nullptr) {
+    while (list) {
         std::cout << list->val;
         list = list->next;
     }
     std::cout << std::endl;
 }
 
-ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-    ListNode* head = list1;
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+    if (!l1) return l2;
+    if (!l2) return l1;
 
-    while (list1->next != nullptr) {
-        list1 = list1->next;
+    ListNode* dummy = new ListNode();
+    ListNode* tail = dummy;
+
+    while (l1 && l2) {
+        if (l1->val <= l2->val) {
+            tail->next = l1;
+            l1 = l1->next;
+        }
+        else {
+            tail->next = l2;
+            l2 = l2->next;
+        }
+        tail = tail->next;
     }
 
-    list1->next = list2;
-
-    return head;    
+    tail->next = l1 ? l1 : l2;
+    return dummy->next;
 }
 
 int main() {
@@ -45,13 +56,16 @@ int main() {
 
     l1->next = l2;
     l2->next = l3;
-    l3->next = nullptr;
+    l3->next = NULL;
     l4->next = l5;
     l5->next = l6;
-    l6->next = nullptr;
+    l6->next = NULL;
+
+    izpisiListNode(l1);
+    izpisiListNode(l4);
 
     ListNode* merged = mergeTwoLists(l1, l4);
-    izpisiListNode(merged);
+    izpisiListNode(merged); 
 
     return 0;
 }
