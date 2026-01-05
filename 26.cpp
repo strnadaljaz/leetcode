@@ -2,37 +2,21 @@
 #include <vector>
 using namespace std;
 
-bool inVector(int item, vector<int> nums) {
-    for (int num : nums) {
-        if (num == item) return true;
+int removeDuplicates(vector<int>& nums) {
+    int count = 1;
+    
+    for (int i = 1; i < nums.size(); ++i) {
+        if (nums[i] != nums[i-1]) {
+            nums[count] = nums[i];
+            ++count;
+        }
     }
 
-    return false;
-}
-
-int removeDuplicates(vector<int>& nums) {
-    vector<int> found = {};
-    int removed = 0;
-
-    for (int i = 0; i < nums.size()-removed; ++i) {
-        if (!inVector(nums[i-removed], found)) {
-            // found.resize(found.size()+1);
-            found.push_back(nums[i-removed]);
-        }
-        else {
-            // remove item
-            for (int k = i-removed; k < nums.size()-removed-1; k++) {
-                nums[k] = nums[k+1];
-            }
-            ++removed;
-        }
-    }    
-
-    return (nums.size()-removed);
+    return count;
 }
 
 int main() {
-    vector<int> nums = {1,1,2};
+    vector<int> nums = {0,0,1,1,1,2,2,3,3,4};
 
     int notDuplicates = removeDuplicates(nums);
     cout << notDuplicates << endl;
