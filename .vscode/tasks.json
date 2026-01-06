@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build active file",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}/a.out"
+      ],
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
