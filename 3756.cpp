@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <limits.h>
 #include <cmath>
+
+#define MOD 1000000007
+
 using namespace std;
 vector<int> sumAndMultiply(string s, vector<vector<int>>& queries) {
     std::vector<int> results;
@@ -12,13 +15,14 @@ vector<int> sumAndMultiply(string s, vector<vector<int>>& queries) {
         string sub_str = s.substr(query[0], query[1] - query[0] + 1);
         sub_str.erase(remove(sub_str.begin(), sub_str.end(), '0'), sub_str.end());
 
-        int x;
+        long long x = 0;
 
-        if (sub_str.empty()) {
-            x = 0;
-        }
-        else {
-            x = stoi(sub_str);
+        if (!sub_str.empty()) {
+            while (!sub_str.empty()) {
+                x = x * 10 + (int)(sub_str[0] - '0'); 
+                x %= MOD;
+                sub_str.erase(0, 1);
+            }
         }
 
         int sum = 0;
@@ -29,7 +33,7 @@ vector<int> sumAndMultiply(string s, vector<vector<int>>& queries) {
 
         long long result = 1LL * x * sum;
 
-        result %= 1000000007;
+        result %= MOD;
 
         results.push_back(result);
     }        
