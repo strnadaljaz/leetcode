@@ -2,18 +2,23 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug active file (gdb)",
+      "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${fileDirname}/a.out",
       "args": [],
-      "stopAtEntry": true,
-      "cwd": "${fileDirname}",
-      "environment": [],
+      "stopAtEntry": false,
       "externalConsole": false,
+      "cwd": "/home/aljaz/Desktop/coding/leetcode",
+      "program": "/home/aljaz/Desktop/coding/leetcode/build/Debug/outDebug",
       "MIMode": "gdb",
-      "miDebuggerPath": "/usr/bin/gdb",
-      "preLaunchTask": "build active file"
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
     }
   ]
 }

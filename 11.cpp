@@ -1,31 +1,25 @@
 #include <algorithm>
+#include <climits>
 #include <vector>
-using namespace std;
 
 class Solution {
-public:
-    int maxArea(vector<int>& height) {
-        const int size = height.size();
+  public:
+    int maxArea(std::vector<int> &height) {
+        int left = 0, right = height.size() - 1;
 
-        if (size <= 1) return 0;
-
-        int left = 0;
-        int right = size - 1;
-
-        int max_area = 0;
+        int max = INT_MIN;
 
         while (left < right) {
             int area = (right - left) * std::min(height[left], height[right]);
 
-            if (area > max_area) 
-                max_area = area;
+            max = std::max(max, area);
 
             if (height[left] < height[right])
                 ++left;
-            else 
+            else
                 --right;
         }
 
-        return max_area;
+        return max;
     }
 };
