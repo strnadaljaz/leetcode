@@ -1,4 +1,5 @@
 #include <iostream>
+#include <regex>
 using namespace std;
 
 struct ListNode {
@@ -8,29 +9,28 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
+ListNode *reverseList(ListNode *head) {
+    if (head == nullptr || head->next == nullptr)
+        return head;
 
-ListNode* reverseList(ListNode* head) {
-    if (head == NULL || head->next == NULL) return head;
-    
-    ListNode* previous = NULL;
-    ListNode* current = head;
-    ListNode* next = head->next;
+    ListNode *prev = nullptr;
+    ListNode *curr = head;
+    ListNode *next = head->next;
 
-    while (next != NULL) {
-        current->next = previous;
-        previous = current;
-        current = next;
+    while (next != nullptr) {
+        curr->next = prev;
+        prev = curr;
+        curr = next;
         next = next->next;
     }
 
-    current->next = previous;
+    curr->next = prev;
 
-    return current;
+    return curr;
 }
 
-int main()
-{
+int main() {
     cout << "Hello world";
-    
+
     return 0;
 }
